@@ -525,16 +525,17 @@ export default {
 			this.updateFooterList('@')
 			this.updateFooterList(':')
 		})
+		this.$nextTick(() => {
+			this.$refs['roomTextarea'].addEventListener('click', () => {
+				if (isMobile) this.keepKeyboardOpen = true
+				this.updateFooterList('@')
+				this.updateFooterList(':')
+			})
 
-		this.$refs['roomTextarea'].addEventListener('click', () => {
-			if (isMobile) this.keepKeyboardOpen = true
-			this.updateFooterList('@')
-			this.updateFooterList(':')
-		})
-
-		this.$refs['roomTextarea'].addEventListener('blur', () => {
-			this.resetFooterList()
-			if (isMobile) setTimeout(() => (this.keepKeyboardOpen = false))
+			this.$refs['roomTextarea'].addEventListener('blur', () => {
+				this.resetFooterList()
+				if (isMobile) setTimeout(() => (this.keepKeyboardOpen = false))
+			})
 		})
 	},
 
